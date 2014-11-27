@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @plays = (Play.where(:user_id => @user.id).sort_by &:score).reverse
+    @games = Game.all 
   end
 
   # GET /users/new

@@ -25,16 +25,20 @@ class PlaysController < ApplicationController
   # POST /plays.json
   def create
     @play = Play.new(play_params)
+    @play.user_id = current_user.id
+    # @play.game_id = params[:game_id]
 
-    respond_to do |format|
-      if @play.save
-        format.html { redirect_to @play, notice: 'Play was successfully created.' }
-        format.json { render :show, status: :created, location: @play }
-      else
-        format.html { render :new }
-        format.json { render json: @play.errors, status: :unprocessable_entity }
-      end
-    end
+    render :json => { status: :created, location: @play }
+    @play.save
+    # respond_to do |format|
+    #   if @play.save
+    #     format.html { redirect_to @play, notice: 'Play was successfully created.' }
+    #     format.json { render :show, status: :created, location: @play }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @play.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /plays/1

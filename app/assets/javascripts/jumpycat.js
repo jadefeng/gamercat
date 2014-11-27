@@ -12,13 +12,13 @@ var jumpycatGame = function() {
 	        game.stage.backgroundColor = '#71c5cf';
 
 	        // Load the cat sprite
-	        game.load.image('cat', 'assets/cat.png');
+	        game.load.image('cat', '/assets/cat.png');
 
 	        // Load the bricks
-	        game.load.image('brick', 'assets/brick.png');
+	        game.load.image('brick', '/assets/brick.png');
 
 	        // Load the jump sound
-	        game.load.audio('jump', 'assets/jump.wav');
+	        game.load.audio('jump', '/assets/jump.wav');
 
 	    },
 
@@ -65,8 +65,8 @@ var jumpycatGame = function() {
 	        // If the cat jumps too much, it restarts the game
 	        if (this.cat.inWorld == false) {
 	            // debugger;
-	            // this.restart();
-	            game.state.start('main');
+	            this.restartGame();
+	            // game.state.start('main');
 	        };
 
 	        game.physics.arcade.overlap(this.cat, this.bricks, this.hitBrick, null, this);
@@ -100,12 +100,26 @@ var jumpycatGame = function() {
 
 	        // jump sound when there is a jump!
 	        this.jumpSound.play();
+	        console.log("jump!")
 	        
 	    },
 
 	    restartGame: function() {
 	        // Goes back to the main state to restart the game
 	        game.state.start('main');
+
+	        // Sends score to the database
+	        console.log("game restarts");
+	        console.log(this.score);
+	        // debugger;
+	        $.ajax({
+	        	type: 'POST',
+	        	url: '/plays',
+	        	data: {
+	        		play: {score: this.score,
+	        			   game_id: gameID}
+	        	}
+	        });
 	    },
 
 	    addOneBrick: function(x, y) {
@@ -123,8 +137,8 @@ var jumpycatGame = function() {
 	        brick.outOfBoundsKill = true;
 
 	        // Score +1 when new pipes are created
-	        this.score += 1;
-	        this.labelScore.text = this.score / 6 ;
+	        this.score += 1 ;
+	        this.labelScore.text = this.score ;
 	    },
 
 	    addRowOfBricks: function() {
@@ -156,7 +170,8 @@ var jumpycatGame = function() {
 	            b.body.velocity.x = 0;
 	        }, this);
 
-	        game.state.start('main');
+	        // game.state.start('main');
+	        this.restartGame();
 	    },
 	};
 

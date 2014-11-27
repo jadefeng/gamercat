@@ -1,5 +1,8 @@
 <h1>Home#show</h1>
 <p>Find me in app/views/home/show.html.erb</p>
 
-<%= link_to("New User", new_user_path) %>
-<%= link_to("Jumpy Cat", jumpycat_path) %>
+<br>
+
+<% @games.each do |g|  %>
+	<%= link_to( g.game_name, game_path(g)) %>
+<% end %>

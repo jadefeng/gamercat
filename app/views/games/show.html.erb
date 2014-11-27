@@ -5,5 +5,16 @@
   <%= @game.game_name %>
 </p>
 
+<div id="gameDiv">
+</div>
+
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>
+
+<script type="text/javascript">
+		var gameID = <%= @game.id %>;
+		var gameName = "<%= @game.game_name %>";
+		if (gameName == "Jumpy Cat") {
+			jumpycatGame();
+		}
+</script>

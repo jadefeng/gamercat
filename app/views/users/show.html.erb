@@ -19,3 +19,16 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+<br>
+Plays
+<br>
+<% @games.each do |g| %>
+	<%= g.game_name %>
+	<ul>
+	<% @plays.each do |p| %>
+		<% if p.game_id == g.id %>
+			<li> Score: <%= p.score %> </li>
+		<% end %>
+	<% end %>
+	</ul>
+<% end %>
