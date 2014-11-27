@@ -8,6 +8,12 @@
 <div id="gameDiv">
 </div>
 
+<ol>
+	<% @game.highscore.each do |play| %>
+		<li> <%= play.user.name || play.user.username %>, <%= play.score %> </li>
+	<%	end %>
+</ol>
+
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>
 
@@ -16,5 +22,11 @@
 		var gameName = "<%= @game.game_name %>";
 		if (gameName == "Jumpy Cat") {
 			jumpycatGame();
+		} else if (gameName == "Jumpy Cat EXTREME") {
+			jumpycatExtremeGame();
+		} else if (gameName == "Kittenstein") {
+			kittensteinGame();
+		} else if (gameName == "Mouse Shooter") {
+			mouseShooterGame();
 		}
 </script>
