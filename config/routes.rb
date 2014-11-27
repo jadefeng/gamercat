@@ -21,8 +21,8 @@
 
 Rails.application.routes.draw do
 	# beginning of routes.rb 
-	match "*path" => redirect("https://gamercat.herokuapp.com/%{path}"), :constraints => { :protocol => "http://" }
-	match "*path" => redirect("https://gamercat.herokuapp.com/%{path}"), :constraints => { :subdomain => "" }
+	# match "*path" => redirect("https://gamercat.herokuapp.com/%{path}"), :constraints => { :protocol => "http://" }
+	# match "*path" => redirect("https://gamercat.herokuapp.com/%{path}"), :constraints => { :subdomain => "" }
 
   resources :plays
 
