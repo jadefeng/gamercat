@@ -18,6 +18,7 @@
 <%= link_to 'Back', games_path %>
 
 <script type="text/javascript">
+		var score = 0 
 		var gameID = <%= @game.id %>;
 		var gameName = "<%= @game.game_name %>";
 		if (gameName == "Jumpy Cat") {

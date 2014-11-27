@@ -5,24 +5,29 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.ico' %>
   <meta http-equiv="Access-Control-Allow-Origin" content="*">
 
 </head>
-  <meta http-equiv="Access-Control-Allow-Origin" content="*">
 
   <body>
-  <meta http-equiv="Access-Control-Allow-Origin" content="*">
 
-    <div>
-      <% if current_user %>
-        Welcome <strong><%= current_user.name || current_user.username %></strong>!
-        <%= link_to "Sign out", signout_path, id: "sign_out" %>
-      <% else %>
-        <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
-        <%= link_to "Sign in with Twitter", "/auth/twitter" %>
-        <%= link_to("New User", new_user_path) %>
-      <% end %>
-    </div>
+<div class="header">
+  <ul class="menu">
+        <% if current_user %>
+          <li>Welcome <strong><%= current_user.name || current_user.username %></strong>! </li>
+          <li><%= link_to("Home", root_path) %> </li>
+          <li><%= link_to("My Profile", user_path(current_user)) %> </li>
+          <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
+        <% else %>
+          <li><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
+          <li><%= link_to "Sign in with Twitter", "/auth/twitter" %></li>
+          <li><%= link_to("New User", new_user_path) %></li>
+        <% end %>
+  </ul>
+</div>
+
+
 
     <div class="container">
     	<%= yield %>
