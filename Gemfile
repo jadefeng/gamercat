@@ -51,6 +51,8 @@ gem 'omniauth-facebook', '1.4.0'
 # Google Logins
 gem "omniauth-google-oauth2", "~> 0.2.1"
 
+# Twitter
+gem 'omniauth-twitter'
 
 # Use unicorn as the app server
 # gem 'unicorn'
