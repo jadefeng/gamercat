@@ -26,7 +26,6 @@ class PlaysController < ApplicationController
   def create
     @play = Play.new(play_params)
     @play.user_id = current_user.id
-    # @play.game_id = params[:game_id]
 
     render :json => { status: :created, location: @play }
     @play.save

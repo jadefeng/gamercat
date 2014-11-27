@@ -13,6 +13,7 @@
 #  jumpycat_score   :integer
 #
 
+
 class User < ActiveRecord::Base
 	# Login works for facebook + google
 	def self.from_omniauth(auth)

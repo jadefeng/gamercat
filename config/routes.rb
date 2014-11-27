@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   resources :games
 
   get 'auth/:provider/callback', to: 'sessions#omni'
-  # get 'auth/failure', to: redirect('/')
+  get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
   resources :sessions, only: [:create, :destroy]
