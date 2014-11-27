@@ -6,3 +6,17 @@
 <% @games.each do |g|  %>
 	<%= link_to( g.game_name, game_path(g)) %>
 <% end %>
+
+<br>
+
+Leaderboard
+<br>
+<% @games.each do |g| %>
+	<%= g.game_name %>
+	<ol>
+	<% g.highscore.each do |play| %>
+		<li> <%= play.user.name || play.user.username %>, <%= play.score %> </li>
+	<%	end %>
+	</ol>	
+<br>
+<% end %>
