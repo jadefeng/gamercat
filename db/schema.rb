@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126232035) do
+ActiveRecord::Schema.define(version: 20141127015541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "games", force: true do |t|
+    t.string   "game_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "plays", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "score"
+    t.integer  "game_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "provider"
@@ -22,8 +36,14 @@ ActiveRecord::Schema.define(version: 20141126232035) do
     t.string   "name"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.integer  "jumpycatScore",    default: 0
+    t.integer  "kittensteinScore", default: 0
+    t.string   "username"
+    t.text     "password_digest"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "jumpycat_score"
   end
 
 end

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe SessionsController, :type => :controller do
 
+  # This is just google and twitter login tests -- not relevant
   describe "GET create" do
     it "returns http success" do
       get :create
