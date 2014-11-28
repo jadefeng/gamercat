@@ -17,12 +17,14 @@
 class User < ActiveRecord::Base
 	# Login works for facebook + google
 	def self.from_omniauth(auth)
+		puts auth
 	  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
 	    user.provider = auth.provider 
 	    user.uid      = auth.uid
 	    user.name     = auth.info.name
 	    user.save 
 	  end
+	  puts "just saved"
 	end
 
 	has_secure_password
