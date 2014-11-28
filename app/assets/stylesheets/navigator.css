@@ -82,7 +82,7 @@
 	background: #F2F2F2;
 	box-shadow: inset 0px 5px #51C1F1;
 	color: #51C1F1;
-	padding: 50px 20px 34px;
+	padding: 10px 20px;
 }
 
 .toggle{ 
@@ -100,13 +100,13 @@
 	}
 	
 	.menu > li > a{
-		padding: 15px 15px;
+		/*padding: 15px 15px;*/
 	}
 	
 	.menu > li > a:hover, .menu > li > a:focus{
 		background: #F2F2F2;
 		box-shadow: inset 5px 0px #51C1F1;
-		padding: 15px 15px 15px 25px;
+		/*padding: 15px 15px 15px 25px;*/
 	}
 	
 	.toggle:after {
@@ -114,7 +114,7 @@
 		display: block;
 		width: 200px;
 		margin: 33px 0;
-		padding: 10px 50px;
+		padding: 10px 10px;
 		background: #51C1F1;
 		-webkit-border-radius: 2px;
 		border-radius: 2px;

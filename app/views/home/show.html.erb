@@ -1,20 +1,26 @@
-<h1>Gamercat</h1>
+<h2>From the same makers as Movie Kitty ... </h2>
+<h3>Get your paws on a claw-troller!</h3>
 <br>
 
 <% @games.each do |g|  %>
-	<%= link_to( g.game_name, game_path(g)) %>
+	<div class="gameIndex">
+		<h1><%= link_to( g.game_name, game_path(g)) %></h1>
+		<%= image_tag(g.image) %>
+		<h4><%= g.description  %></h4>
+	</div>
 <% end %>
 
 <br>
+<br>
 
-Leaderboard
-<br>
+<h1>Leaderboard</h1>
 <% @games.each do |g| %>
-	<%= g.game_name %>
-	<ol>
-	<% g.highscore.each do |play| %>
-		<li> <%= play.user.name || play.user.username %>, <%= play.score %> </li>
-	<%	end %>
-	</ol>	
-<br>
+	<div class="game_leaderboard">
+		<h4><%= g.game_name %></h4>
+		<ol>
+		<% g.highscore.each do |play| %>
+			<li> <%= play.user.name || play.user.username %>, <%= play.score %> </li>
+		<%	end %>
+		</ol>
+	</div>	
 <% end %>

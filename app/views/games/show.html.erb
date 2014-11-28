@@ -1,21 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Game name:</strong>
+<h1>
   <%= @game.game_name %>
-</p>
-
-<div id="gameDiv">
+</h1>
+<div class="gameBox">
+	<div id="gameDiv">
+	</div>
+	<br>
 </div>
 
-<ol>
-	<% @game.highscore.each do |play| %>
-		<li> <%= play.user.name || play.user.username %>, <%= play.score %> </li>
-	<%	end %>
-</ol>
-
-<%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+<div class="gameBox">
+	<h2>Description</h2>
+	<%= @game.description  %>
+	<h2><%= @game.game_name %> Leaderboard </h2>
+	<ol>
+		<% @game.highscore.each do |play| %>
+			<li> <%= play.user.name || play.user.username %>, <%= play.score %> </li>
+		<%	end %>
+	</ol>
+</div>
+<br>
 
 <script type="text/javascript">
 		var score = 0 
@@ -31,3 +35,5 @@
 			mouseShooterGame();
 		}
 </script>
+<br>
+<br>

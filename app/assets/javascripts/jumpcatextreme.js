@@ -26,7 +26,7 @@ var jumpycatExtremeGame = function() {
 	        pickup = this.add.audio('pickup');
 
 	        hp = new Array();
-	        rock = new Array();
+	        brick = new Array();
 	        
 	        player = this.add.sprite(this.world.centerX - 120, this.world.centerY, 'cat');
 	        player.anchor.setTo(0.5, 0.5);
@@ -38,20 +38,20 @@ var jumpycatExtremeGame = function() {
 	        stars.enableBody = true;
 	        stars.physicsBodyType = Phaser.Physics.ARCADE;
 	        
-	        rocks = game.add.group();
-	        rocks.enableBody = true;
-	        rocks.physicsBodyType = Phaser.Physics.ARCADE;
+	        bricks = game.add.group();
+	        bricks.enableBody = true;
+	        bricks.physicsBodyType = Phaser.Physics.ARCADE;
 	        
-	        rocksdisplay = game.add.group();
-	        rocksdisplay.enableBody = true;
-	        rocksdisplay.physicsBodyType = Phaser.Physics.ARCADE;
+	        bricksdisplay = game.add.group();
+	        bricksdisplay.enableBody = true;
+	        bricksdisplay.physicsBodyType = Phaser.Physics.ARCADE;
 	        
 	        stars.setAll('outOfBoundsKill', true);
-	        rocks.setAll('outOfBoundsKill', true);
-	        rocksdisplay.setAll('outOfBoundsKill', true);
+	        bricks.setAll('outOfBoundsKill', true);
+	        bricksdisplay.setAll('outOfBoundsKill', true);
 
 	        i = 0;
-	        rockspeed = -225;
+	        brickspeed = -225;
 
 	        for (j = 0; j < 3; j++) {
 	            hp[j] = this.add.sprite(10 + j * 20, 10, 'health');
@@ -65,15 +65,15 @@ var jumpycatExtremeGame = function() {
 	        // shadow.scale.setTo(0.2, 0.2);
 
 	        text = game.add.text(game.world.width - 80, 15, "Points: 0", {
-	            font: "12px \"Press Start 2P\"",
-	            fill: "#333",
+	            font: "20px Arial",
+	            fill: "#ffffff",
 	            align: "center"
 	        });
 	        text.anchor.setTo(0.5);
 	        //
 	        text2 = game.add.text(this.world.centerX, this.world.centerY - 25, "Click with your mouse to start!\nYour last score: " + score, {
-	            font: "12px \"Press Start 2P\"",
-	            fill: "#333",
+	            font: "20px Arial",
+	            fill: "#ffffff",
 	            align: "center"
 	        });
 	        text2.anchor.setTo(0.5);
@@ -98,12 +98,12 @@ var jumpycatExtremeGame = function() {
 	            game.time.events.add(Phaser.Timer.SECOND * 1.5, function() {
 	                this.time.events.loop(Phaser.Timer.SECOND * 3, this.createStars, this);
 	            }, this);
-	            this.time.events.loop(Phaser.Timer.SECOND * 3, this.createRocks, this);
+	            this.time.events.loop(Phaser.Timer.SECOND * 3, this.createBricks, this);
 	            // share.visible = false;
 	            text2.visible = false;
 	        }
 	        sharing = 0;
-	        game.physics.arcade.overlap(player, rocks, this.rockHit, null, this);
+	        game.physics.arcade.overlap(player, bricks, this.brickHit, null, this);
 	        // game.physics.arcade.overlap(ground, player, this.playerDown, null, this);
 	        game.physics.arcade.overlap(stars, player, this.caughtStar, null, this);
 
@@ -123,39 +123,39 @@ var jumpycatExtremeGame = function() {
 	        text.setText("Points: " + points);
 	        pickup.play();
 	    },
-	    createRocks: function() {
+	    createBricks: function() {
 	    	// Brick 1
 	        i++;
 	        rnd = this.rnd.integerInRange(-150, 150);
-	        rock[i] = rocksdisplay.create(this.world.width + 50, rnd, 'brick');
-	        rock[i].anchor.setTo(0.5);
-	        rock[i].body.velocity.x = rockspeed;
+	        brick[i] = bricksdisplay.create(this.world.width + 50, rnd, 'brick');
+	        brick[i].anchor.setTo(0.5);
+	        brick[i].body.velocity.x = brickspeed;
 
-	        line = rocks.create(this.world.width + 65, rnd, 'line');
+	        line = bricks.create(this.world.width + 65, rnd, 'line');
 	        line.anchor.setTo(0.5);
-	        line.body.velocity.x = rockspeed;
+	        line.body.velocity.x = brickspeed;
 	        line.name = i;
 
 	        // Brick 2
 	        i++;
-	        rock[i] = rocksdisplay.create(this.world.width + 50, rnd + 260 + 100, 'brick');
-	        rock[i].anchor.setTo(0.5);
-	        rock[i].body.velocity.x = rockspeed;
+	        brick[i] = bricksdisplay.create(this.world.width + 50, rnd + 260 + 100, 'brick');
+	        brick[i].anchor.setTo(0.5);
+	        brick[i].body.velocity.x = brickspeed;
 
-	        line = rocks.create(this.world.width + 58, rnd + 260 + 100, 'line');
+	        line = bricks.create(this.world.width + 58, rnd + 260 + 100, 'line');
 	        line.anchor.setTo(0.5);
-	        line.body.velocity.x = rockspeed;
+	        line.body.velocity.x = brickspeed;
 	        line.name = i;
 
 	    },
 	    createStars: function() {
 	        star = stars.create(this.world.width + 58, rnd = this.rnd.integerInRange(0, this.world.height - 50), 'star');
 	        star.anchor.setTo(0.5);
-	        star.body.velocity.x = rockspeed;
+	        star.body.velocity.x = brickspeed;
 	    },
-	    rockHit: function(a, b) {
-	    	console.log("hit a rock");
-	        rock[b.name].kill();
+	    brickHit: function(a, b) {
+	    	console.log("hit a brick");
+	        brick[b.name].kill();
 	        b.kill();
 	        hp[j].kill();
 	        j--;

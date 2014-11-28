@@ -13,25 +13,33 @@
 
   <body>
 
-<div class="header">
-  <ul class="menu">
-        <% if current_user %>
-          <li>Welcome <strong><%= current_user.name || current_user.username %></strong>! </li>
-          <li><%= link_to("Home", root_path) %> </li>
-          <li><%= link_to("My Profile", user_path(current_user)) %> </li>
-          <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
-        <% else %>
-          <li><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
-          <li><%= link_to "Sign in with Twitter", "/auth/twitter" %></li>
-          <li><%= link_to("New User", new_user_path) %></li>
-        <% end %>
-  </ul>
-</div>
-
-
-
     <div class="container">
+
+    <div class="logo"><%= image_tag("header.png") %></div>
+
+    <div class="header">
+      <ul class="menu">
+            <% if current_user %>
+              <li>Welcome <strong><%= current_user.name || current_user.username %></strong>! </li>
+              <li><%= link_to("Home", root_path) %> </li>
+              <li><%= link_to("My Profile", user_path(current_user)) %> </li>
+              <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
+            <% else %>
+              <li><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
+              <li><%= link_to "Sign in with Twitter", "/auth/twitter" %></li>
+              <li><%= link_to("New User", new_user_path) %></li>
+            <% end %>
+      </ul>
+    </div>
+
+
     	<%= yield %>
     </div>
+
+<div id="footer">
+  <h4>GamerCat - Put your paws on a claw-troller</h4>
+  <h5>&copy Jade Feng</h5>
+</div>
+
   </body>
 </html>
