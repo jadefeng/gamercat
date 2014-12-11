@@ -44,8 +44,8 @@ body {
 	width: 150px;
 	height: 200px;
 	margin: 50px;
-	background: url('/assets/chalkboard.jpg');
-	background-size: cover;
+	background-color: gray;
+	/*background-size: cover;*/
 }
 .gameIndex {
 	display: inline-block;
